@@ -15,7 +15,6 @@ namespace WebAPI.Controllers
     public class ProductsController : ControllerBase
     {
         IProductService _productService;
-        private object _categoryService;
 
         public ProductsController(IProductService productService)
         {

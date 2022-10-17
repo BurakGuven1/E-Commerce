@@ -29,17 +29,7 @@ namespace WebAPI
         {
             services.AddControllersWithViews();
 
-            services.AddSingleton<IVendorService, VendorManager>();
-            services.AddSingleton<IProductService,ProductManager>();
-            services.AddSingleton<IOrderService, OrderManager>();
-            services.AddSingleton<ICustomerService, CustomerManager>();
-            services.AddSingleton<ICategoryService, CategoryManager>();
-
-            services.AddSingleton<IVendorDal, EfVendorDal>();
-            services.AddSingleton<IProductDal, EfProductDal>();
-            services.AddSingleton<IOrdersDal, EfOrdersDal>();
-            services.AddSingleton<ICustomerDal, EfCustomerDal>();
-            services.AddSingleton<ICategoryDal, EfCategoryDal>();
+            
 
 
             //IProductService baðýmlýlýðý görürsen bunun karþýlýðý Product managerdýr.
