@@ -27,6 +27,11 @@ namespace BusinessLayer.Concrete
         {
             //iş kodları buraya... eğer ürün öyleyse böyleyse kodları... her şey geçerliyse ekle geçersizse ekleme
 
+            if(product.UnitPrice <= 0)
+            {
+                return new ErrorResult(Messages.UnitPriceInvalid);
+            }
+
             if (product.ProductName.Length < 2)
             {
                 return new ErrorResult(Messages.ProductNameInvalid);
@@ -61,6 +66,11 @@ namespace BusinessLayer.Concrete
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p=>p.ProductID==productId)); // SuccessDataResult içinde  Product var ona parantez içini gönderiyosun
+        }
+
+        public IDataResult<List<OrderBoxDetailDto>> GetOrderBoxDetails(int id)
+        {
+            return new SuccessDataResult<List<OrderBoxDetailDto>>(_productDal.GetOrderBoxDetails(id));
         }
 
         public IDataResult<List<ProductDetailDto>> GetProductDetails()

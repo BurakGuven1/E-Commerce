@@ -12,5 +12,6 @@ namespace DataAccess.Abstract
     public interface IProductDal:IEntityRepo<Product>
     {
         List<ProductDetailDto> GetProductDetails();
+        List<OrderBoxDetailDto> GetOrderBoxDetails(int id);
     }
 }

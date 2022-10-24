@@ -25,5 +25,31 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+
+        public List<OrderBoxDetailDto> GetOrderBoxDetails(int id)
+        {
+            using(dbContext context = new dbContext())
+            {
+                var res = from c in context.Customer
+                          join ca in context.Cart
+                          on c.CustomerId equals ca.CustomerID
+                          join cp in context.CartProduct
+                          on ca.CartID equals cp.CartID
+                          join vp in context.VendorProduct
+                          on cp.VendorProductID equals vp.VendorProductID
+                          join p in context.Product
+                          on vp.ProductID equals p.ProductID
+                          where c.CustomerId == id
+                          select new OrderBoxDetailDto {CustomerID=c.CustomerId, 
+                              CartID= ca.CartID,
+                              Quantity = cp.Quantity,
+                              VendorProductID = vp.VendorProductID,
+                              ProductID = p.ProductID,
+                              ProductName = p.ProductName,
+                              UnitPrice = p.UnitPrice};
+                return res.ToList();
+
+            }
+        }
     }
 }

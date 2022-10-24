@@ -13,6 +13,7 @@ namespace BusinessLayer.Constants
         public static string ProductNameInvalid = "Ürün ismi geçersiz";
         public static string MaintenanceTime = "Sistem Bakımda !";
         public static string ProductsListed = "Ürünler Listelendi !";
+        public static string UnitPriceInvalid = "Fiyat Geçersiz !";
     }
 }
  
