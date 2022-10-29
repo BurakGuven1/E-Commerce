@@ -10,7 +10,7 @@ namespace Entities.Concrete
     public class Cart:IEntity
     {
         public int CartID { get; set; }
-        public DateTime DataCreated { get; set; }
+        public DateTime DateCreated { get; set; }
         public int CustomerID { get; set; }
     }
 }

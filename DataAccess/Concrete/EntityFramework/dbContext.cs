@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-1JV6DUF;Database=Ecommerce; Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-GQE1LN2;Database=Ecommerce; Trusted_Connection=true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
