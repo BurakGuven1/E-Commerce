@@ -56,13 +56,17 @@ namespace BusinessLayer.Concrete
 
             public IDataResult<List<Customer>> GetAllFirstName(string FirstName)
             {
-            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(p => p.FirstName == FirstName));
-        }
+                return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(p => p.FirstName == FirstName));
+            }
 
             public IDataResult<Customer> GetById(int customerId)
             {
                 return new SuccessDataResult<Customer>(_customerDal.Get(p => p.CustomerId == customerId)); // SuccessDataResult içinde  Customer var ona parantez içini gönderiyosun
             }
 
+            public IDataResult<List<Customer>> GetCustomerByEmail(string Email)
+            {
+                return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(p => p.Email == Email));
+            }
     }
 }

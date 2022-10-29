@@ -13,6 +13,7 @@ namespace BusinessLayer.Abstract
     {
         IDataResult<List<Customer>> GetAll();
         IDataResult<List<Customer>> GetAllByDOB(DateTime DOB);
+        IDataResult<List<Customer>> GetCustomerByEmail(string Email);
         IDataResult<List<Customer>> GetAllFirstName(string FirstName);
         IDataResult<Customer> GetById(int CustomerId);
         IResult Add(Customer customer);
