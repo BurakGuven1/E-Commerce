@@ -32,5 +32,16 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpPost("add")]
+        public IActionResult Add(Cart cart)
+        {
+            var result = _cartService.Add(cart);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }
