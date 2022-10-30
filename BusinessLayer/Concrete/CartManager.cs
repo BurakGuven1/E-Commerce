@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    class CartManager : ICartService
+    public class CartManager : ICartService
     {
         ICartDal _cartDal;
 
