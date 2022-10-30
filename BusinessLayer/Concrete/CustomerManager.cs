@@ -64,9 +64,9 @@ namespace BusinessLayer.Concrete
                 return new SuccessDataResult<Customer>(_customerDal.Get(p => p.CustomerId == customerId)); // SuccessDataResult içinde  Customer var ona parantez içini gönderiyosun
             }
 
-            public IDataResult<List<Customer>> GetCustomerByEmail(string Email)
+            public IDataResult<Customer> GetCustomerByEmail(string Email)
             {
-                return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(p => p.Email == Email));
+                return new SuccessDataResult<Customer>(_customerDal.Get(p => p.Email == Email));
             }
     }
 }
