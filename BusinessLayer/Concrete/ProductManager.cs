@@ -73,5 +73,10 @@ namespace BusinessLayer.Concrete
         {
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
+
+        public IDataResult<List<VendorProductDetailDto>> GetVendorProductDetails(int id)
+        {
+            return new SuccessDataResult<List<VendorProductDetailDto>>(_productDal.GetVendorProductDetails(id));
+        }
     }
 }

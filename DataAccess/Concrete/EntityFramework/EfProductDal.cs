@@ -51,5 +51,22 @@ namespace DataAccess.Concrete.EntityFramework
 
             }
         }
+
+        public List<VendorProductDetailDto> GetVendorProductDetails(int id)
+        {
+            using (dbContext context = new dbContext())
+            {
+                var result = from vp in context.VendorProduct
+                             join p in context.Product
+                             on vp.ProductID equals p.ProductID
+                             where vp.ProductID == id
+                             select new VendorProductDetailDto
+                             {
+                                 VendorProductID = vp.VendorProductID,
+                                 ProductID =p.ProductID
+                             };
+                return result.ToList();
+            }
+        }
     }
 }

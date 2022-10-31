@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
-        [HttpGet("getorderdtobycustomerid/{id:int}")]
+        [HttpGet("getorderdtobycustomerid/{id}")]
         public IActionResult GetOrderBoxDetails(int id)
         {
             var result = _productService.GetOrderBoxDetails(id);
