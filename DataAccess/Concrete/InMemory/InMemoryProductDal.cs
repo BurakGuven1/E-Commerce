@@ -69,6 +69,11 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public List<VendorProductDetailDto> GetVendorProductDetailsByCategoryId(int categoryId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Product product) // bu product userın gördüğü product güncelle butonuna basınca veri kaynağından güncelliyorum.
         {   
             //Gönderdiğim ürün id'sine sahip olan listedeki ürünü bul
