@@ -30,11 +30,13 @@ namespace BusinessLayer.Concrete
         [ValidationAspect(typeof(ProductValidator))]   //Add metodunu doğrula ProductValidatordaki kurallara göre 
         public IResult Add(Product product)
         {
+            if (CheckIfProductCountOfCategoryCorrect(product.CategoryID).Success)
+            {
+                _productDal.Add(product);
+                return new SuccessResult(Messages.ProductAdded);
+            }
+            return new ErrorResult();
             //iş kodları buraya... eğer ürün öyleyse böyleyse kodları... her şey geçerliyse ekle geçersizse ekleme
-            
-            _productDal.Add(product);
-
-            return new SuccessResult(Messages.ProductAdded);
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -77,6 +79,39 @@ namespace BusinessLayer.Concrete
         public IDataResult<List<VendorProductDetailDto>> GetVendorProductDetails(int id)
         {
             return new SuccessDataResult<List<VendorProductDetailDto>>(_productDal.GetVendorProductDetails(id));
+        }
+
+        [ValidationAspect(typeof(ProductValidator))]
+        public IResult Update(Product product)
+        {
+            var result = _productDal.GetAll(p => p.CategoryID == product.CategoryID).Count;
+            if (result >= 21)
+            {
+                return new ErrorResult(Messages.ProductCountOfCategoryError);
+            }
+            throw new NotImplementedException();
+        }
+
+        private IResult CheckIfProductCountOfCategoryCorrect(int CategoryID)
+        {
+            //Select count(*) from products where categoryId= ... 'dir alttaki kod.
+            var result = _productDal.GetAll(p => p.CategoryID == CategoryID).Count;
+            if (result >= 21)
+            {
+                return new ErrorResult(Messages.ProductCountOfCategoryError);
+            }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfProductNameExists(int CategoryID)
+        {
+            //Select count(*) from products where categoryId= ... 'dir alttaki kod.
+            var result = _productDal.GetAll(p => p.CategoryID == CategoryID).Count;
+            if (result >= 21)
+            {
+                return new ErrorResult(Messages.ProductCountOfCategoryError);
+            }
+            return new SuccessResult();
         }
     }
 }

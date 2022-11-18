@@ -15,6 +15,7 @@ namespace BusinessLayer.Constants
         public static string ProductsListed = "Ürünler Listelendi !";
         public static string UnitPriceInvalid = "Fiyat Geçersiz !";
         public static string CartAdded = "sepet eklendi";
+        public static string ProductCountOfCategoryError="Bir kategoride en fazla 21 ürün olabilir"; // sonrası için satış taktiği olarak kullanılabilir bu kısıtlama
     }
 }
  
