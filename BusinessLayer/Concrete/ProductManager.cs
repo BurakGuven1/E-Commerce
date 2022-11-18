@@ -81,6 +81,11 @@ namespace BusinessLayer.Concrete
             return new SuccessDataResult<List<VendorProductDetailDto>>(_productDal.GetVendorProductDetails(id));
         }
 
+        public IDataResult<List<VendorProductDetailDto>> GetVendorProductDetailsByCategoryId(int categoryId)
+        {
+            return new SuccessDataResult<List<VendorProductDetailDto>>(_productDal.GetVendorProductDetailsByCategoryId(categoryId));
+        }
+
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Update(Product product)
         {
