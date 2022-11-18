@@ -18,7 +18,7 @@ namespace BusinessLayer.Abstract
         IDataResult<List<VendorProductDetailDto>> GetVendorProductDetails(int id);
         IDataResult<List<OrderBoxDetailDto>> GetOrderBoxDetails(int id);
         IDataResult<Product> GetById(int productId);
-
+        IDataResult<List<VendorProductDetailDto>> GetVendorProductDetailsByCategoryId(int categoryId);
         IResult Add(Product product);
         IResult Update(Product product);
     }

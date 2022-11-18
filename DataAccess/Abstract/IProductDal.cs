@@ -14,5 +14,6 @@ namespace DataAccess.Abstract
         List<ProductDetailDto> GetProductDetails();
         List<OrderBoxDetailDto> GetOrderBoxDetails(int id);
         List<VendorProductDetailDto> GetVendorProductDetails(int id);
+        List<VendorProductDetailDto> GetVendorProductDetailsByCategoryId(int categoryId);
     }
 }
