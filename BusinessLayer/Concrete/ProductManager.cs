@@ -3,6 +3,7 @@ using BusinessLayer.Constants;
 using BusinessLayer.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
@@ -20,23 +21,26 @@ namespace BusinessLayer.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        ICategoryService _categoryService;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal, ICategoryService categoryService)
         {
             _productDal = productDal;
-          
+            _categoryService = categoryService;
         }
 
         [ValidationAspect(typeof(ProductValidator))]   //Add metodunu doğrula ProductValidatordaki kurallara göre 
         public IResult Add(Product product)
         {
-            if (CheckIfProductCountOfCategoryCorrect(product.CategoryID).Success)
+           IResult result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryID),
+                CheckIfProductNameExists(product.ProductName), CheckIfCategoryLimitExceded());
+            if (result!=null)
             {
-                _productDal.Add(product);
-                return new SuccessResult(Messages.ProductAdded);
+                return result;
             }
-            return new ErrorResult();
-            //iş kodları buraya... eğer ürün öyleyse böyleyse kodları... her şey geçerliyse ekle geçersizse ekleme
+            _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
+
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -108,13 +112,22 @@ namespace BusinessLayer.Concrete
             return new SuccessResult();
         }
 
-        private IResult CheckIfProductNameExists(int CategoryID)
+        private IResult CheckIfProductNameExists(string productName)
         {
-            //Select count(*) from products where categoryId= ... 'dir alttaki kod.
-            var result = _productDal.GetAll(p => p.CategoryID == CategoryID).Count;
-            if (result >= 21)
+            var result = _productDal.GetAll(p => p.ProductName == productName).Any();
+            if (result)
             {
-                return new ErrorResult(Messages.ProductCountOfCategoryError);
+                return new ErrorResult(Messages.ProductNameAlreadyExists);
+            }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfCategoryLimitExceded()
+        {
+            var result = _categoryService.GetAll();
+            if (result.Data.Count > 15)
+            {
+                return new ErrorResult(Messages.CategoryLimitExceded);
             }
             return new SuccessResult();
         }
