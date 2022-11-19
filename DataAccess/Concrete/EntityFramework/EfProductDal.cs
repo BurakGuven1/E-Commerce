@@ -63,7 +63,7 @@ namespace DataAccess.Concrete.EntityFramework
                              select new VendorProductDetailDto
                              {
                                  VendorProductID = vp.VendorProductID,
-                                 ProductID =p.ProductID
+                                 ProductID =p.ProductID 
                              };
                 return result.ToList();
             }
