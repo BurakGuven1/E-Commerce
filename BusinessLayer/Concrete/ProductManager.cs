@@ -29,6 +29,7 @@ namespace BusinessLayer.Concrete
             _categoryService = categoryService;
         }
 
+
         [ValidationAspect(typeof(ProductValidator))]   //Add metodunu doğrula ProductValidatordaki kurallara göre 
         public IResult Add(Product product)
         {
