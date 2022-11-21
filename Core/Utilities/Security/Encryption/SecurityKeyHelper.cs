@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Security.Encryption
+namespace Core.Utilities.Security.Encryption
 {
-    public class SecurityHelper
+    public class SecurityKeyHelper
     {
         public static SecurityKey CreateSecurityKey(string securityKey)
         {
