@@ -18,6 +18,14 @@ namespace BusinessLayer.Constants
         public static string ProductCountOfCategoryError="Bir kategoride en fazla 21 ürün olabilir"; // sonrası için satış taktiği olarak kullanılabilir bu kısıtlama
         public static string ProductNameAlreadyExists="Bu isimde zaten başka bir ürün var";
         public static string CategoryLimitExceded="Kategori limiti aşıldı";
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string UserRegistered = "Üye olundu";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Hatalı şifre";
+        public static string SuccessfulLogin = "Giriş başarılı";
+        public static string UserAlreadyExists = "Böyle bir kullanıcı zaten kayıtlı";
+        public static string AccessTokenCreated = "Token oluşturuldu";
+
     }
 }
  

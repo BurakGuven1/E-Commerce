@@ -4,6 +4,7 @@ using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using System;
@@ -30,8 +31,16 @@ namespace BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
             builder.RegisterType<EfOrdersDal>().As<IOrdersDal>().SingleInstance();
             builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance();
+            builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
             builder.RegisterType<EfVendorDal>().As<IVendorDal>().SingleInstance();
             builder.RegisterType<EfCartDal>().As<ICartDal>().SingleInstance();
+
+
+            builder.RegisterType<UserManager>().As<IUserService>();
+            builder.RegisterType<EfUserDal>().As<IUserDal>();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
 
 

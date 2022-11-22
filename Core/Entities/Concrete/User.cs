@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Core.Entities.Concrete
 {
-    public class Customer:IEntity
+    public class User:IEntity
     {
-        public int CustomerId { get; set; }
+        public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Gender { get; set; }
         public DateTime DOB { get; set; }
         public string Email { get; set; } // dob vs ekle
         public byte[] PasswordHash { get; set; }
