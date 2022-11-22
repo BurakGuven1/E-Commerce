@@ -27,15 +27,16 @@ namespace DataAccess.Concrete.EntityFramework
 
         public DbSet<Product> Product { get; set; }
         public DbSet<Category> Category { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Cart> Cart { get; set; }
         public DbSet<Vendor> Vendor { get; set; }
         public DbSet<VendorProduct> VendorProduct { get; set; }
         public DbSet<CartProduct> CartProduct { get; set; }
-        public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<User> User { get; set; }
+        
 
     }
 }

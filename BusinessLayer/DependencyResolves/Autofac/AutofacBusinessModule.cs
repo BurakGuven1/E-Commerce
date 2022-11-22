@@ -25,6 +25,7 @@ namespace BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
             builder.RegisterType<VendorManager>().As<IVendorService>().SingleInstance();
             builder.RegisterType<CartManager>().As<ICartService>().SingleInstance();
+            builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
 
 
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
@@ -36,8 +37,7 @@ namespace BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<EfCartDal>().As<ICartDal>().SingleInstance();
 
 
-            builder.RegisterType<UserManager>().As<IUserService>();
-            builder.RegisterType<EfUserDal>().As<IUserDal>();
+            
 
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();

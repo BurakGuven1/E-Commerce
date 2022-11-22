@@ -35,7 +35,6 @@ namespace BusinessLayer.Concrete
                 LastName = userForRegisterDto.LastName,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                Gender = userForRegisterDto.Gender,
                 Contact = userForRegisterDto.Contact,
                 DOB = userForRegisterDto.DOB,
                 
