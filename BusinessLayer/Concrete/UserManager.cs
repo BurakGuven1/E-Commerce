@@ -18,17 +18,17 @@ namespace BusinessLayer.Concrete
             _userDal = userDal;
         }
 
-        public List<OperationClaim> GetClaims(User user)
+        public List<OperationClaim> GetClaims(Users user)
         {
             return _userDal.GetClaims(user);
         }
 
-        public void Add(User user)
+        public void Add(Users user)
         {
             _userDal.Add(user);
         }
 
-        public User GetByMail(string email)
+        public Users GetByMail(string email)
         {
             return _userDal.Get(u => u.Email == email);
         }

@@ -35,7 +35,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<CartProduct> CartProduct { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Users> Users{ get; set; }
         
 
     }

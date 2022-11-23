@@ -6,9 +6,9 @@ using DataAccess.Abstract;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserDal : EfEntityRepositoryBase<User, dbContext>, IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<Users, dbContext>, IUserDal
     {
-        public List<OperationClaim> GetClaims(User user)
+        public List<OperationClaim> GetClaims(Users user)
         {
             using (var context = new dbContext())
             {

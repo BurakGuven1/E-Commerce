@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IUserDal : IEntityRepo<User>
+    public interface IUserDal : IEntityRepo<Users>
     {
-        List<OperationClaim> GetClaims(User user);
+        List<OperationClaim> GetClaims(Users user);
     }
 }
