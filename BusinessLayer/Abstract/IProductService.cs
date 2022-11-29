@@ -15,7 +15,6 @@ namespace BusinessLayer.Abstract
         IDataResult<List<Product>> GetAllByCategoryId(int id);
         IDataResult<List<Product>> GetAllUnitPrice(decimal min, decimal max);
         IDataResult<List<ProductDetailDto>> GetProductDetails();
-        IDataResult<List<VendorProductDetailDto>> GetVendorProductDetails(int id);
         IDataResult<List<OrderBoxDetailDto>> GetOrderBoxDetails(int id);
         IDataResult<Product> GetById(int productId);
         IDataResult<List<VendorProductDetailDto>> GetVendorProductDetailsByCategoryId(int categoryId);
