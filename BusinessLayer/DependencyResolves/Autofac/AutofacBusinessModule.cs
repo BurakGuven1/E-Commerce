@@ -35,6 +35,7 @@ namespace BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
             builder.RegisterType<EfVendorDal>().As<IVendorDal>().SingleInstance();
             builder.RegisterType<EfCartDal>().As<ICartDal>().SingleInstance();
+            builder.RegisterType<EfVendorProductDal>().As<IVendorProductDal>().SingleInstance();
 
 
             
