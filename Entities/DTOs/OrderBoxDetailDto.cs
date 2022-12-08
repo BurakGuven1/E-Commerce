@@ -15,7 +15,7 @@ namespace Entities.DTOs
         public int VendorProductID { get; set; }
         public int ProductID { get; set; }
         public string ProductName { get; set; }
-        public int UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
 
     }
 }
