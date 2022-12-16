@@ -36,7 +36,7 @@ namespace BusinessLayer.Concrete
             _vendorProductDal = vendorProductDal;
         }
 
-        //[SecuredOperation("product.add,admin")]  
+        [SecuredOperation("product.add,admin")]  
         [ValidationAspect(typeof(ProductValidator))]   //Add metodunu doğrula ProductValidatordaki kurallara göre 
         public IResult Add(Product product)
         {
