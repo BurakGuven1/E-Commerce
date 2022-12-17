@@ -25,6 +25,7 @@ namespace BusinessLayer.Constants
         public static string SuccessfulLogin = "Giriş başarılı";
         public static string UserAlreadyExists = "Böyle bir kullanıcı zaten kayıtlı";
         public static string AccessTokenCreated = "Token oluşturuldu";
+        public static string VendorRegistered = "Satıcı üye oldu";
 
     }
 }
