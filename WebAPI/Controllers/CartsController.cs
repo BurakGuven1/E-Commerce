@@ -1,6 +1,10 @@
 ﻿using BusinessLayer.Abstract;
 using Entities.Concrete;
+using Iyzipay;
+using Iyzipay.Model;
+using Iyzipay.Request;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,5 +47,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        //iyzico için--> 1- Kullanıcıyı al 2- Sepetteki toplam tutarı hesapla 3-PaymentCard Nesnesi oluştur. 4-Buyer nesnesi oluştur
+        // 5-Kargo ve fatura nesnelerini oluştur 6-CartDetails BasketItem listesi olarak hazırla 7- ödeme isteği oluştur
+        //8 ödeme yap 9- işlem başarılıysa sipariş fatura oluştur 10-sepeti kapat 11-işlem başarılı sayfasına yönlendir 12-Sandbox paneline bak
+
     }
+
 }

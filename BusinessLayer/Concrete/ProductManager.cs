@@ -7,10 +7,12 @@ using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,21 +24,25 @@ namespace BusinessLayer.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        IVendorProductDal _vendorProductDal;
         ICategoryService _categoryService;
 
-        public ProductManager(IProductDal productDal, ICategoryService categoryService)
+
+
+        public ProductManager(IProductDal productDal, ICategoryService categoryService, IVendorProductDal vendorProductDal)
         {
             _productDal = productDal;
             _categoryService = categoryService;
+            _vendorProductDal = vendorProductDal;
         }
 
-        //[SecuredOperation("product.add,admin")]  
+        [SecuredOperation("product.add,admin")]  
         [ValidationAspect(typeof(ProductValidator))]   //Add metodunu doğrula ProductValidatordaki kurallara göre 
         public IResult Add(Product product)
         {
-           IResult result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryID),
-                CheckIfProductNameExists(product.ProductName), CheckIfCategoryLimitExceded());
-            if (result!=null)
+            IResult result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryID),
+                 CheckIfProductNameExists(product.ProductName), CheckIfCategoryLimitExceded());
+            if (result != null)
             {
                 return result;
             }
@@ -52,24 +58,24 @@ namespace BusinessLayer.Concrete
             //    return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime); // ürün listesini döndürüyüroz çünkü frontende lazım.
             //}
 
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductsListed);
 
         }
 
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=>p.CategoryID==id)); // SuccessDataResult içinde List of Product var ona parantez içini gönderiyosun
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryID == id)); // SuccessDataResult içinde List of Product var ona parantez içini gönderiyosun
         }
 
         public IDataResult<List<Product>> GetAllUnitPrice(decimal min, decimal max)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=>p.UnitPrice>=min && p.UnitPrice<=max));
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max));
         }
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(p=>p.ProductID==productId)); // SuccessDataResult içinde  Product var ona parantez içini gönderiyosun
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductID == productId)); // SuccessDataResult içinde  Product var ona parantez içini gönderiyosun
         }
 
         public IDataResult<List<OrderBoxDetailDto>> GetOrderBoxDetails(int id)
@@ -133,5 +139,54 @@ namespace BusinessLayer.Concrete
             }
             return new SuccessResult();
         }
+
+        public IResult TestAdd(VendorProductDetailDto model)
+        {
+            SuccessResult result = new SuccessResult();
+            result.Success = false;
+            result.Message = "Bilinmeyen bir hata oluştu.";
+
+            try
+            {
+                using (dbContext context = new dbContext())
+                {
+                    //Product Ekleme İşlemi
+                    Product product = context.Product.Add(new Product
+                    {
+                        CategoryID = model.CategoryID,
+                        ProductName = model.ProductName,
+                        ProductPhoto = model.ProductPhoto,
+                        UnitPrice = model.UnitPrice,
+                        State = true,
+                        UnitsInStock = model.UnitsInStock
+                    }).Entity;
+
+
+
+                    //Vendor Product Ekleme
+
+                    VendorProduct vendorProduct = context.VendorProduct.Add(new VendorProduct
+                    {
+                        CategoryID = model.CategoryID,
+                        Description = model.Description,
+                        Price = model.Price,
+                        ProductID = product.ProductID,
+                        Quantity = model.Quantity,
+                        VendorID = model.VendorId,
+                    }).Entity;
+
+
+                    result.Success = true;
+                    result.Message = "Başarıyla eklendi.";
+                }
+            }
+            catch (Exception)
+            {
+                result.Success = false;
+            }
+
+            return result;
+        }
+
     }
 }

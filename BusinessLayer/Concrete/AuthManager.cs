@@ -4,6 +4,7 @@ using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
+using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,16 @@ namespace BusinessLayer.Concrete
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
+        private IVendorService _vendorService; 
 
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        public AuthManager(IUserService userService,ITokenHelper tokenHelper, IVendorService vendorService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
+            _vendorService = vendorService; 
         }
 
+        #region Register
         public IDataResult<Users> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
@@ -37,11 +41,34 @@ namespace BusinessLayer.Concrete
                 PasswordSalt = passwordSalt,
                 Contact = userForRegisterDto.Contact,
                 DOB = userForRegisterDto.DOB,
-                
+
             };
             _userService.Add(user);
             return new SuccessDataResult<Users>(user, Messages.UserRegistered);
         }
+
+        public IDataResult<Vendor> Register(VendorForRegisterDto vendorForRegisterDto, string password)
+        {
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password,out passwordHash, out passwordSalt);
+            var vendor = new Vendor
+            {
+                Email = vendorForRegisterDto.Email,
+                Address = vendorForRegisterDto.Address,
+                Name = vendorForRegisterDto.Name,
+
+            };
+            _vendorService.Add(vendor);
+            return new SuccessDataResult<Vendor>(vendor, Messages.VendorRegistered);
+        }
+
+
+        #endregion
+
+
+
+
+
 
         public IDataResult<Users> Login(UserForLoginDto userForLoginDto)
         {
@@ -74,5 +101,8 @@ namespace BusinessLayer.Concrete
             var accessToken = _tokenHelper.CreateToken(user, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
+
+
+
     }
 }

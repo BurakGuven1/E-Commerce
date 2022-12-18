@@ -21,5 +21,7 @@ namespace BusinessLayer.Abstract
 
         IResult Add(Product product);
         IResult Update(Product product);
+        IResult TestAdd(VendorProductDetailDto model);
+
     }
 }

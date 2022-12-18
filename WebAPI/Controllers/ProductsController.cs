@@ -58,9 +58,6 @@ namespace WebAPI.Controllers
         }
 
 
-
-        //güncelleme için httpput silme için httpdelete AMA silme ve güncelleme için de genellikle POST kullanılır.
-
         [HttpPost("add")]
         public IActionResult Add(Product product)
         {
