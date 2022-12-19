@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public int CategoryID { get; set; }
         public string ProductName { get; set; }
         public int UnitsInStock { get; set; }
-        public decimal UnitPrice { get; set; }
+        public int UnitPrice { get; set; }
         public bool State { get; set; }
         public string ProductPhoto { get; set; }
     }  

@@ -40,13 +40,16 @@ namespace DataAccess.Concrete.EntityFramework
                           join p in context.Product
                           on vp.ProductID equals p.ProductID
                           where c.CustomerId == id
-                          select new OrderBoxDetailDto {CustomerID=c.CustomerId, 
-                              CartID= ca.CartID,
+                          select new OrderBoxDetailDto
+                          {
+                              CustomerID = c.CustomerId,
+                              CartID = ca.CartID,
                               Quantity = cp.Quantity,
                               VendorProductID = vp.VendorProductID,
                               ProductID = p.ProductID,
                               ProductName = p.ProductName,
-                              UnitPrice = p.UnitPrice};
+                              UnitPrice = p.UnitPrice
+                          };
                 return res.ToList();
 
             }
@@ -54,42 +57,53 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<VendorProductDetailDto> GetVendorProductDetails(int id)
         {
-            using (dbContext context = new dbContext())
-            {
-                var result = from vp in context.VendorProduct
-                             join p in context.Product
-                             on vp.ProductID equals p.ProductID
-                             where vp.ProductID == id
-                             select new VendorProductDetailDto
-                             {
-                                 VendorProductID = vp.VendorProductID,
-                                 ProductID =p.ProductID 
-                             };
-                return result.ToList();
-            }
+            throw new NotImplementedException();
         }
+
         public List<VendorProductDetailDto> GetVendorProductDetailsByCategoryId(int categoryId)
         {
-            using (dbContext context = new dbContext())
-            {
-                var result = from vp in context.VendorProduct
-                             join p in context.Product
-                             on vp.ProductID equals p.ProductID
-                             where p.CategoryID==categoryId
-                             select new VendorProductDetailDto
-                             {
-                                 VendorProductID = vp.VendorProductID,
-                                 ProductID = p.ProductID,
-                                 VendorID=vp.VendorID,
-                                 Price=vp.Price,
-                                 Quantity=vp.Quantity,
-                                 Description=vp.Description,
-                                 ProductName=p.ProductName,
-                                 CategoryID=p.CategoryID,
-                                 ProductPhoto=p.ProductPhoto
-                             };
-                return result.ToList();
-            }
+            throw new NotImplementedException();
         }
+
+        /* public List<VendorProductDetailDto> GetVendorProductDetails(int id)
+         {
+             using (dbContext context = new dbContext())
+             {
+                 var result = from vp in context.VendorProduct
+                              join p in context.Product
+                              on vp.ProductID equals p.ProductID
+                              where vp.ProductID == id
+                              select new VendorProductDetailDto
+                              {
+                                  VendorProductID = vp.VendorProductID,
+                                  ProductID =p.ProductID 
+                              };
+                 return result.ToList();
+             }
+         }
+         public List<VendorProductDetailDto> GetVendorProductDetailsByCategoryId(int categoryId)
+         {
+             using (dbContext context = new dbContext())
+             {
+                 var result = from vp in context.VendorProduct
+                              join p in context.Product
+                              on vp.ProductID equals p.ProductID
+                              where p.CategoryID==categoryId
+                              select new VendorProductDetailDto
+                              {
+                                  VendorProductID = vp.VendorProductID,
+                                  ProductID = p.ProductID,
+                                  VendorID=vp.VendorID,
+                                  Price=vp.Price,
+                                  Quantity=vp.Quantity,
+                                  Description=vp.Description,
+                                  ProductName=p.ProductName,
+                                  CategoryID=p.CategoryID,
+                                  ProductPhoto=p.ProductPhoto
+                              };
+                 return result.ToList();
+             }
+         }
+        */
     }
 }

@@ -36,7 +36,6 @@ namespace BusinessLayer.Concrete
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Contact = userForRegisterDto.Contact,
-                DOB = userForRegisterDto.DOB,
                 
             };
             _userService.Add(user);
