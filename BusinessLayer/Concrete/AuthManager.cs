@@ -54,8 +54,7 @@ namespace BusinessLayer.Concrete
             {
                 return new ErrorDataResult<Users>(Messages.PasswordError);
             }
-
-            return new SuccessDataResult<Users>(userToCheck, Messages.SuccessfulLogin);
+                return new SuccessDataResult<Users>(userToCheck, Messages.SuccessfulLogin);
         }
 
         public IResult UserExists(string email)
