@@ -5,20 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.DTOs
 {
-    public class Customer:IEntity
+    public class CustomerForRegisterDto : IDto
     {
-        public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime DOB { get; set; }
-        public string Gender { get; set; }
         public string Email { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
+        public string Password { get; set; }
         public string Contact { get; set; }
-
-
+        public string Gender { get; set; }
+        public DateTime DOB { get; set; }
     }
 }

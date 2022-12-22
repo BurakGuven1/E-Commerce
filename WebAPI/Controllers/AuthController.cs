@@ -17,11 +17,13 @@ namespace WebAPI.Controllers
     {
         private IAuthService _authService;
         private IVendorService _vendorService;
+        private ICustomerService _customerService;
 
-        public AuthController(IAuthService authService,IVendorService vendorService)
+        public AuthController(IAuthService authService,IVendorService vendorService, ICustomerService customerService)
         {
             _authService = authService;
             _vendorService = vendorService;
+            _customerService = customerService;
         }
 
         [HttpPost("login")]
@@ -73,6 +75,7 @@ namespace WebAPI.Controllers
 
             var registerResult = _authService.VendorRegister(vendorForRegisterDto, vendorForRegisterDto.Password);
             var result = _authService.CreateAccessToken(registerResult.Data);
+
             Vendor vendor = new Vendor();
             vendor.Address = vendorForRegisterDto.Address;
             vendor.Email = vendorForRegisterDto.Email;
@@ -88,6 +91,38 @@ namespace WebAPI.Controllers
 
             return BadRequest(result.Message);
         }
+
+        [HttpPost("customerregister")]
+        public ActionResult CustomerRegister(CustomerForRegisterDto customerForRegisterDto)
+        {
+            var userExists = _authService.UserExists(customerForRegisterDto.Email);
+            if (!userExists.Success)
+            {
+                return BadRequest(userExists.Message);
+            }
+
+            var registerResult = _authService.CustomerRegister(customerForRegisterDto, customerForRegisterDto.Password);
+            var result = _authService.CreateAccessToken(registerResult.Data);
+
+            Customer customer = new Customer();
+            customer.Email = customerForRegisterDto.Email;
+            customer.FirstName = customerForRegisterDto.FirstName;
+            customer.LastName = customerForRegisterDto.LastName;
+            customer.Gender= customerForRegisterDto.Gender;
+            customer.PasswordHash = Encoding.ASCII.GetBytes(customerForRegisterDto.Password);
+            customer.PasswordSalt = Encoding.ASCII.GetBytes(customerForRegisterDto.Password);
+            customer.Contact = customerForRegisterDto.Contact;
+            customer.DOB = customerForRegisterDto.DOB;
+            _customerService.Add(customer);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+
+            return BadRequest(result.Message);
+        }
+
+        //customer a ekle
 
     }
 }

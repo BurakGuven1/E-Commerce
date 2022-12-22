@@ -63,23 +63,25 @@ namespace BusinessLayer.Concrete
             return new SuccessDataResult<Users>(user, Messages.UserRegistered);
         }
 
-       /* public IDataResult<Users> VendorRegister(VendorForRegisterDto vendorForRegisterDto, string password)
+        public IDataResult<Users> CustomerRegister(CustomerForRegisterDto customerForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
             var user = new Users
             {
-                Email = vendorForRegisterDto.Email,
-                FirstName = vendorForRegisterDto.Name,
-                LastName = vendorForRegisterDto.LastName,
+                Email = customerForRegisterDto.Email,
+                FirstName = customerForRegisterDto.FirstName,
+                LastName = customerForRegisterDto.LastName,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                Contact = vendorForRegisterDto.Contact,
+                Contact = customerForRegisterDto.Contact,
+
             };
             _userService.Add(user);
             return new SuccessDataResult<Users>(user, Messages.UserRegistered);
         }
-       */
+
+       
         #endregion
 
         //[SecuredOperation("vendor,admin")]
