@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyvendorproductid/{id}")]
         public IActionResult GetVendorProductDetails(int id)
         {
-            var result = _productService.GetVendorProductDetails(id);
+            var result = _productService.GetVendorProductDetailsByCategoryId(id);
             if (result.Success)
             {
                 return Ok(result);

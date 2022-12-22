@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using BusinessLayer.BusinessAspects.Autofac;
 using BusinessLayer.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -40,36 +41,48 @@ namespace BusinessLayer.Concrete
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Contact = userForRegisterDto.Contact,
-                DOB = userForRegisterDto.DOB,
-
             };
             _userService.Add(user);
             return new SuccessDataResult<Users>(user, Messages.UserRegistered);
         }
 
-        public IDataResult<Vendor> Register(VendorForRegisterDto vendorForRegisterDto, string password)
+        public IDataResult<Users> VendorRegister(VendorForRegisterDto vendorForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(password,out passwordHash, out passwordSalt);
-            var vendor = new Vendor
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            var user = new Users
             {
                 Email = vendorForRegisterDto.Email,
-                Address = vendorForRegisterDto.Address,
-                Name = vendorForRegisterDto.Name,
-
+                FirstName = vendorForRegisterDto.Name,
+                LastName = vendorForRegisterDto.LastName,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                Contact = vendorForRegisterDto.Contact,
             };
-            _vendorService.Add(vendor);
-            return new SuccessDataResult<Vendor>(vendor, Messages.VendorRegistered);
+            _userService.Add(user);
+            return new SuccessDataResult<Users>(user, Messages.UserRegistered);
         }
 
-
+       /* public IDataResult<Users> VendorRegister(VendorForRegisterDto vendorForRegisterDto, string password)
+        {
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            var user = new Users
+            {
+                Email = vendorForRegisterDto.Email,
+                FirstName = vendorForRegisterDto.Name,
+                LastName = vendorForRegisterDto.LastName,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                Contact = vendorForRegisterDto.Contact,
+            };
+            _userService.Add(user);
+            return new SuccessDataResult<Users>(user, Messages.UserRegistered);
+        }
+       */
         #endregion
 
-
-
-
-
-
+        //[SecuredOperation("vendor,admin")]
         public IDataResult<Users> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
@@ -102,7 +115,11 @@ namespace BusinessLayer.Concrete
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
+        public IDataResult<Users> VendorLogin(VendorForLoginDto vendorForLoginDto)
+        {
+            throw new NotImplementedException();
+        }
 
-
+       
     }
 }

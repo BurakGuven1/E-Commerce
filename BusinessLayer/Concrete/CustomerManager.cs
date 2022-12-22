@@ -26,10 +26,9 @@ namespace BusinessLayer.Concrete
             public IResult Add(Customer customer)
             {
                 //iş kodları buraya... eğer ürün öyleyse böyleyse kodları... her şey geçerliyse ekle geçersizse ekleme
-
                 _customerDal.Add(customer);
 
-                return new SuccessResult(Messages.ProductAdded);
+                return new SuccessResult(Messages.CustomerRegistered);
             }
 
         public IDataResult<List<Customer>> GetAll()
