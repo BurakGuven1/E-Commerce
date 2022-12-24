@@ -100,7 +100,7 @@ namespace WebAPI.Controllers
             {
                 return BadRequest(userExists.Message);
             }
-
+ 
             var registerResult = _authService.CustomerRegister(customerForRegisterDto, customerForRegisterDto.Password);
             var result = _authService.CreateAccessToken(registerResult.Data);
 
