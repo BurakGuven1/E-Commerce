@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
+using Microsoft.Data.SqlClient;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -14,7 +16,9 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-4HHMEA8;Database=Ecommerce; Trusted_Connection=true");
-        }
+
+
+        }   
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

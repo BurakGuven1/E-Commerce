@@ -14,7 +14,7 @@ namespace BusinessLayer.Abstract
     public interface IAuthService
     {
         IDataResult<Users> Register(UserForRegisterDto userForRegisterDto, string password);
-        IDataResult<Users> Login(UserForLoginDto userForLoginDto);
+        IDataResult<Users>  Login(UserForLoginDto userForLoginDto);
         IDataResult<Users> VendorRegister(VendorForRegisterDto vendorForRegisterDto, string password);
         IDataResult<Users> CustomerRegister(CustomerForRegisterDto customerForRegisterDto, string password);
         IDataResult<Users> VendorLogin(VendorForLoginDto vendorForLoginDto);

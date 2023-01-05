@@ -18,8 +18,8 @@ namespace BusinessLayer.DependencyResolves.Autofac
     public class AutofacBusinessModule : Module
     {
         protected override void Load(ContainerBuilder builder)
-        {   // isterse 100 tane constructor olsun Iproductservice i newlemeye gerek yok. o bunu veriyor.
-            builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();// 100000 kişiye 1 tane instance üretip onu herkesle paylaşıyor. 100000 tane instance üretmek mümkün değil.
+        {   
+            builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
             builder.RegisterType<OrderManager>().As<IOrderService>().SingleInstance();
             builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
@@ -36,10 +36,7 @@ namespace BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<EfVendorDal>().As<IVendorDal>().SingleInstance();
             builder.RegisterType<EfCartDal>().As<ICartDal>().SingleInstance();
             builder.RegisterType<EfVendorProductDal>().As<IVendorProductDal>().SingleInstance();
-
-
             
-
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 

@@ -62,6 +62,9 @@ namespace WebAPI
                 new CoreModule()
             });
 
+
+            services.AddTransient<IMailService, SendGridMailService>();
+
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //ServiceTool.Create(services);
 

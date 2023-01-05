@@ -36,7 +36,7 @@ namespace BusinessLayer.Concrete
             _vendorProductDal = vendorProductDal;
         }
 
-        [SecuredOperation("product.add,admin")]  
+        //[SecuredOperation("product.add,admin")]  
         [ValidationAspect(typeof(ProductValidator))]   //Add metodunu doğrula ProductValidatordaki kurallara göre 
         public IResult Add(Product product)
         {
@@ -133,7 +133,7 @@ namespace BusinessLayer.Concrete
         private IResult CheckIfCategoryLimitExceded()
         {
             var result = _categoryService.GetAll();
-            if (result.Data.Count > 15)
+            if (result.Data.Count > 25)
             {
                 return new ErrorResult(Messages.CategoryLimitExceded);
             }

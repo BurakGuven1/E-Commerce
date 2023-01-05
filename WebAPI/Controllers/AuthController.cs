@@ -24,10 +24,13 @@ namespace WebAPI.Controllers
             _authService = authService;
             _vendorService = vendorService;
             _customerService = customerService;
+
         }
 
+        //Login async liğini düzelt
+
         [HttpPost("login")]
-        public ActionResult Login(UserForLoginDto userForLoginDto)
+        public  ActionResult Login(UserForLoginDto userForLoginDto)
         {
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)
