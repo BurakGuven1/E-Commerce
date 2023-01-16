@@ -35,6 +35,7 @@ namespace WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerDocument();
             services.AddControllersWithViews();
             services.AddCors(c =>
             {
@@ -89,7 +90,8 @@ namespace WebAPI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
