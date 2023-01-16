@@ -1,5 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.BusinessAspects.Autofac;
+using Core.Entities.Concrete;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +21,7 @@ namespace WebAPI.Controllers
         private IVendorService _vendorService;
         private ICustomerService _customerService;
 
+
         public AuthController(IAuthService authService,IVendorService vendorService, ICustomerService customerService)
         {
             _authService = authService;
@@ -26,8 +29,6 @@ namespace WebAPI.Controllers
             _customerService = customerService;
 
         }
-
-        //Login async liğini düzelt
 
         [HttpPost("login")]
         public  ActionResult Login(UserForLoginDto userForLoginDto)
@@ -46,6 +47,9 @@ namespace WebAPI.Controllers
 
             return BadRequest(result.Message);
         }
+
+        //todo: swagger ekle 
+        //todo: userid ye göre geri dönüş yapılacak
 
         [HttpPost("register")]
         public ActionResult Register(UserForRegisterDto userForRegisterDto)

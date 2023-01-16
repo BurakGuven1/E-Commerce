@@ -26,6 +26,8 @@ namespace BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<VendorManager>().As<IVendorService>().SingleInstance();
             builder.RegisterType<CartManager>().As<ICartService>().SingleInstance();
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
+            builder.RegisterType<EmailManager>().As<IEmailService>().SingleInstance();
+            
 
 
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
@@ -39,6 +41,7 @@ namespace BusinessLayer.DependencyResolves.Autofac
             
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+            
 
 
 

@@ -140,7 +140,7 @@ namespace BusinessLayer.Concrete
             return new SuccessResult();
         }
 
-        public IResult TestAdd(VendorProductDetailDto model)
+        public IResult DtoAdd(VendorProductDetailDto model)
         {
             SuccessResult result = new SuccessResult();
             result.Success = false;
@@ -162,7 +162,6 @@ namespace BusinessLayer.Concrete
                     }).Entity;
 
 
-
                     //Vendor Product Ekleme
 
                     VendorProduct vendorProduct = context.VendorProduct.Add(new VendorProduct
@@ -174,7 +173,6 @@ namespace BusinessLayer.Concrete
                         Quantity = model.Quantity,
                         VendorID = model.VendorId,
                     }).Entity;
-
 
                     result.Success = true;
                     result.Message = "Başarıyla eklendi.";

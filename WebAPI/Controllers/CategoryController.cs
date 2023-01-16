@@ -13,14 +13,12 @@ namespace WebAPI.Controllers
     public class CategoryController : ControllerBase
     {
         ICategoryService _categoryService;
-
         public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
 
         [HttpGet("getall")]
-
         public IActionResult GetAll()
         {
             var result = _categoryService.GetAll();
@@ -41,7 +39,6 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
 
         [HttpPost("add")]
         public IActionResult Add(Category category)

@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Core.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,6 @@ namespace WebAPI
             });
 
 
-            services.AddTransient<IMailService, SendGridMailService>();
 
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //ServiceTool.Create(services);

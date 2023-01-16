@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
+using Core.Entities;
 
 namespace BusinessLayer.Concrete
 {
@@ -20,13 +21,15 @@ namespace BusinessLayer.Concrete
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
-        private IVendorService _vendorService; 
+        private IVendorService _vendorService;
+        private IEmailService _emailService;
 
-        public AuthManager(IUserService userService,ITokenHelper tokenHelper, IVendorService vendorService)
+        public AuthManager(IUserService userService,IEmailService emailService,ITokenHelper tokenHelper, IVendorService vendorService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
             _vendorService = vendorService; 
+            _emailService= emailService;
         }
 
         #region Register
@@ -43,6 +46,12 @@ namespace BusinessLayer.Concrete
                 PasswordSalt = passwordSalt,
                 Contact = userForRegisterDto.Contact,
             };
+            //
+            //
+            string subject = "YokYok'a Hoşgeldiniz !";
+            string body = "<div style='background-color: black; color: white; width: 50%; font-size:32px; padding:10px 20px; text-align:center; font-weight:bold '>" + "<p style = 'padding: 10px 20px; font-size: 48px; font-weight: bold;' > YOKYOK </p>" + "<p>" + user.FirstName.ToUpper() + " " + user.LastName.ToUpper() + "</p> " + "<p style= 'padding: 10px 20px; font-size: 24px;'> Bizi tercih ettiğiniz için teşekkür ederiz. </p> <p style= 'padding: 10px 20px; font-size: 24px;'> İyi alışverişler dileriz.</p>" + "</div>" ;
+            Users[] users = new Users[] { user };
+            _emailService.SendEmail(users,subject,body);
             _userService.Add(user);
             return new SuccessDataResult<Users>(user, Messages.UserRegistered);
         }
@@ -123,6 +132,5 @@ namespace BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
-       
     }
 }
