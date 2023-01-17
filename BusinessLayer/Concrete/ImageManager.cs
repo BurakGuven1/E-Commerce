@@ -53,10 +53,8 @@ namespace BusinessLayer.Concrete
 
         public IDataResult<Image> get(int productId)
         {
-
-
             var result = _imageDal.Get((ring) => ring.productId == productId);
-
+            
             if (result != null)
             {
                 return new SuccessDataResult<Image>(result);

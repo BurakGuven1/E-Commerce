@@ -20,13 +20,14 @@ namespace WebAPI.Controllers
         private IAuthService _authService;
         private IVendorService _vendorService;
         private ICustomerService _customerService;
+        private IUserService _userService;
 
-
-        public AuthController(IAuthService authService,IVendorService vendorService, ICustomerService customerService)
+        public AuthController(IAuthService authService,IUserService userService,IVendorService vendorService, ICustomerService customerService)
         {
             _authService = authService;
             _vendorService = vendorService;
             _customerService = customerService;
+            _userService = userService;
 
         }
 
@@ -48,7 +49,6 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        //todo: swagger ekle 
         //todo: userid ye göre geri dönüş yapılacak
 
         [HttpPost("register")]
@@ -127,6 +127,18 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result.Message);
+        }
+
+        [HttpGet("getbyid/{userId}")]
+        public IActionResult GetClaims(int userId)
+        {
+            var user = _userService.GetByUserId(userId);
+            var result = _userService.GetClaims(user.Data);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         //customer a ekle

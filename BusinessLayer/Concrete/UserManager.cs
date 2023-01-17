@@ -1,6 +1,9 @@
 ﻿using BusinessLayer.Abstract;
 using Core.Entities.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +21,9 @@ namespace BusinessLayer.Concrete
             _userDal = userDal;
         }
 
-        public List<OperationClaim> GetClaims(Users user)
+        public IDataResult<List<OperationClaim>> GetClaims(Users user)
         {
-            return _userDal.GetClaims(user);
+            return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
         }
 
         public void Add(Users user)
@@ -32,5 +35,12 @@ namespace BusinessLayer.Concrete
         {
             return _userDal.Get(u => u.Email == email);
         }
+        public IDataResult<Users> GetByUserId(int userId)
+        {
+
+            return new SuccessDataResult<Users>(_userDal.Get(u => u.Id== userId));
+        }
+
+
     }
 }
