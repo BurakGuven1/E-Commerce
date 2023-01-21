@@ -128,7 +128,7 @@ namespace WebAPI.Controllers
 
             return BadRequest(result.Message);
         }
-
+         
         [HttpGet("getclaimsbyuserid/{userId}")]
         public IActionResult GetClaims(int userId)
         {
