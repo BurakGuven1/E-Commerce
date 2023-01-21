@@ -60,6 +60,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join p in context.Product
                              on vp.ProductID equals p.ProductID
                              where vp.ProductID == id
+                            
                              select new VendorProductDetailDto
                              {
                                  VendorProductID = vp.VendorProductID,

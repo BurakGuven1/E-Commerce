@@ -171,7 +171,7 @@ namespace BusinessLayer.Concrete
                         Price = model.Price,
                         ProductID = product.ProductID,
                         Quantity = model.Quantity,
-                        VendorID = model.VendorId,
+                        VendorID = model.VendorID,
                     }).Entity;
 
                     result.Success = true;

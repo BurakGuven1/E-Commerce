@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Utilities.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IUserOperationClaimService
     {
+
+        IResult Add(int userId, int operationId);
     }
 }

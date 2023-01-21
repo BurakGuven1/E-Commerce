@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-4HHMEA8;Database=Ecommerce; Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=Ecommerce; Trusted_Connection=true");
 
 
         }   

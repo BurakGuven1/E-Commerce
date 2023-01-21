@@ -2,6 +2,7 @@
 using BusinessLayer.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -59,9 +60,9 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("add")]
-        public IActionResult Add(Product product)
+        public IActionResult Add(VendorProductDetailDto product)
         {
-            var result = _productService.Add(product);
+            var result = _productService.DtoAdd(product);
             if (result.Success)
             {
                 return Ok(result);
