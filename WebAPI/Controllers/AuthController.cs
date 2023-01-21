@@ -129,7 +129,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbyid/{userId}")]
+        [HttpGet("getclaimsbyuserid/{userId}")]
         public IActionResult GetClaims(int userId)
         {
             var user = _userService.GetByUserId(userId);
