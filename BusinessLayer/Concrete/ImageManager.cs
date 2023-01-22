@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Core.Utilities.FileHelpers;
 using BusinessLayer.Abstract;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace BusinessLayer.Concrete
 {
@@ -33,15 +34,18 @@ namespace BusinessLayer.Concrete
 
                 return new ErrorDataResult<Image>("product yok");
             }
-            Image imageAdded = new Image
-            {
-                productId = productget.Data.ProductID,
-                imagePath = FileHelper.newPath(image),
-                createDate = DateTime.Now
-            };
+            productget.Data.ProductPhoto = FileHelper.newPath(image);
 
-            _imageDal.Add(imageAdded);
-            return new SuccessDataResult<Image>(imageAdded);
+           var result= _productService.Update(productget.Data);
+            if (!result.Success)
+            {
+
+                return new ErrorDataResult<Image>("image eklenemedi");
+            }
+           
+
+            
+            return new SuccessDataResult<Image>("image eklendi");
 
         }
 

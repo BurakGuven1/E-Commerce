@@ -26,14 +26,19 @@ namespace BusinessLayer.Concrete
         IProductDal _productDal;
         IVendorProductDal _vendorProductDal;
         ICategoryService _categoryService;
+        IVendorService _vendorService;
+        
 
 
 
-        public ProductManager(IProductDal productDal, ICategoryService categoryService, IVendorProductDal vendorProductDal)
+        public ProductManager(IProductDal productDal, ICategoryService categoryService, IVendorProductDal vendorProductDal,
+            IVendorService vendorService)
         {
             _productDal = productDal;
             _categoryService = categoryService;
             _vendorProductDal = vendorProductDal;
+            _vendorService = vendorService;
+            
         }
 
         //[SecuredOperation("product.add,admin")]  
@@ -47,6 +52,7 @@ namespace BusinessLayer.Concrete
                 return result;
             }
             _productDal.Add(product);
+
             return new SuccessResult(Messages.ProductAdded);
 
         }
@@ -146,6 +152,31 @@ namespace BusinessLayer.Concrete
             result.Success = false;
             result.Message = "Bilinmeyen bir hata oluştu.";
 
+
+            var product = _productDal.getAddandgetId(new Product
+            {
+                CategoryID = model.CategoryID,
+                ProductName = model.ProductName,
+                ProductPhoto = model.ProductPhoto,
+                UnitPrice = 0,
+                State = true,
+                UnitsInStock = model.UnitsInStock
+            });
+
+            Console.WriteLine(result);
+
+            /*
+            var vendorProduct = _vendorService.Add(new VendorProduct
+            {
+                CategoryID = model.CategoryID,
+                Description = model.Description,
+                Price = model.Price,
+                ProductID = product.ProductID,
+                Quantity = 0,
+                VendorID = model.VendorID,
+            });
+            */
+            /*
             try
             {
                 using (dbContext context = new dbContext())
@@ -182,9 +213,15 @@ namespace BusinessLayer.Concrete
             {
                 result.Success = false;
             }
+            */
 
             return result;
         }
 
+        public Product getAddedId(Product product)
+        {
+           
+            return _productDal.getAddandgetId(product);
+        }
     }
 }

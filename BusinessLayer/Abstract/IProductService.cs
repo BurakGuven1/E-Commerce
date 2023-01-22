@@ -23,5 +23,7 @@ namespace BusinessLayer.Abstract
         IResult Update(Product product);
         IResult DtoAdd(VendorProductDetailDto model);
 
+        Product getAddedId(Product product);
+
     }
 }

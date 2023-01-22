@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.EntityFramework;
+using Core.Entities;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -94,6 +95,20 @@ namespace DataAccess.Concrete.EntityFramework
                              };
                 return result.ToList();
             }
+        }
+
+        public Product getAddandgetId(Product product)
+        {
+            Product returnproduct = product;
+
+            using (dbContext context = new dbContext())
+            {
+                var addedEntity = context.Entry(product); //ref i yakala
+                addedEntity.State = EntityState.Added; // bu aslında eklenebilecek bi nesne
+                context.SaveChanges(); //ekle 
+                returnproduct = addedEntity.Entity;
+            }
+            return returnproduct;
         }
     }
 }

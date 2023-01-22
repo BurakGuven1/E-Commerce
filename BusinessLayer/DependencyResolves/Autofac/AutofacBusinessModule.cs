@@ -3,10 +3,12 @@ using Autofac.Extras.DynamicProxy;
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using Castle.DynamicProxy;
+using Core.DataAccess.EntityFramework;
 using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,7 @@ namespace BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EmailManager>().As<IEmailService>().SingleInstance();
             builder.RegisterType<UserOperationClaimManager>().As<IUserOperationClaimService>().SingleInstance();
-
+            builder.RegisterType<ImageManager>().As<IImageService>().SingleInstance();
 
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
@@ -39,7 +41,9 @@ namespace BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<EfCartDal>().As<ICartDal>().SingleInstance();
             builder.RegisterType<EfVendorProductDal>().As<IVendorProductDal>().SingleInstance();
 
-           
+            builder.RegisterType<EfImageDal>().As<IImageDal>().SingleInstance();
+
+
             builder.RegisterType<EfUserOperationClaimDal>().As<IUserOperationClaimDal>().SingleInstance();
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();

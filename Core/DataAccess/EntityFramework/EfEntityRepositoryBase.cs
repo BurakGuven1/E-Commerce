@@ -23,6 +23,8 @@ namespace Core.DataAccess.EntityFramework
                 context.SaveChanges(); //ekle 
             }
         }
+      
+
 
         public void Delete(TEntity entity)
         {
