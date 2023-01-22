@@ -163,9 +163,8 @@ namespace BusinessLayer.Concrete
                 UnitsInStock = model.UnitsInStock
             });
 
-            Console.WriteLine(result);
+           
 
-            /*
             var vendorProduct = _vendorService.Add(new VendorProduct
             {
                 CategoryID = model.CategoryID,
@@ -175,7 +174,7 @@ namespace BusinessLayer.Concrete
                 Quantity = 0,
                 VendorID = model.VendorID,
             });
-            */
+            
             /*
             try
             {
