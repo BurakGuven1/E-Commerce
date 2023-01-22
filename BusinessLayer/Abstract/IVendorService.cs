@@ -13,5 +13,6 @@ namespace BusinessLayer.Abstract
         IDataResult<List<Vendor>> GetAll();
         IDataResult<Vendor> GetById(int VendorID);
         IResult Add(Vendor vendor);
+        IDataResult<Vendor> GetVendorByEmail(string Email);
     }
 }

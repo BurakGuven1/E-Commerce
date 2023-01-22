@@ -2,6 +2,7 @@
 using BusinessLayer.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,10 @@ namespace BusinessLayer.Concrete
         public IDataResult<Vendor> GetById(int vendorId)
         {
             return new SuccessDataResult<Vendor>(_vendorDal.Get(p => p.VendorID == vendorId)); // SuccessDataResult içinde  Customer var ona parantez içini gönderiyosun
+        }
+        public IDataResult<Vendor> GetVendorByEmail(string Email)
+        {
+            return new SuccessDataResult<Vendor>(_vendorDal.Get(p => p.Email == Email));
         }
 
     }

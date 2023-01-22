@@ -53,5 +53,15 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getvendorbyemail/{Email}")]
+        public IActionResult GetCustomerByEmail(string Email)
+        {
+            var result = _vendorService.GetVendorByEmail(Email);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

@@ -156,7 +156,7 @@ namespace BusinessLayer.Concrete
                         CategoryID = model.CategoryID,
                         ProductName = model.ProductName,
                         ProductPhoto = model.ProductPhoto,
-                        UnitPrice = model.UnitPrice,
+                        UnitPrice = 0,
                         State = true,
                         UnitsInStock = model.UnitsInStock
                     }).Entity;
@@ -170,7 +170,7 @@ namespace BusinessLayer.Concrete
                         Description = model.Description,
                         Price = model.Price,
                         ProductID = product.ProductID,
-                        Quantity = model.Quantity,
+                        Quantity = 0,
                         VendorID = model.VendorID,
                     }).Entity;
 

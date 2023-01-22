@@ -63,8 +63,13 @@ namespace DataAccess.Concrete.EntityFramework
                             
                              select new VendorProductDetailDto
                              {
-                                 VendorProductID = vp.VendorProductID,
-                                 ProductID =p.ProductID 
+                                 VendorID = vp.VendorID,
+                                 Price = vp.Price,
+                                 Description = vp.Description,
+                                 ProductName = p.ProductName,
+                                 CategoryID = p.CategoryID,
+                                 ProductPhoto = p.ProductPhoto
+
                              };
                 return result.ToList();
             }
@@ -79,11 +84,9 @@ namespace DataAccess.Concrete.EntityFramework
                              where p.CategoryID==categoryId
                              select new VendorProductDetailDto
                              {
-                                 VendorProductID = vp.VendorProductID,
-                                 ProductID = p.ProductID,
+                                
                                  VendorID=vp.VendorID,
                                  Price=vp.Price,
-                                 Quantity=vp.Quantity,
                                  Description=vp.Description,
                                  ProductName=p.ProductName,
                                  CategoryID=p.CategoryID,
