@@ -96,6 +96,33 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+        public List<VendorProductDetailDtoWithId> GetVendorProductDetailsByVendorId(int vendorId)
+        {
+            using (dbContext context = new dbContext())
+            {
+                var result = from vp in context.VendorProduct
+                             join p in context.Product
+                             on vp.ProductID equals p.ProductID
+                             join c in context.Category
+                             on p.CategoryID equals c.CategoryID
+                             where vp.VendorID==vendorId 
+                             select new VendorProductDetailDtoWithId
+                             {
+
+                                 VendorID = vp.VendorID,
+                                 Price = vp.Price,
+                                 Description = vp.Description,
+                                 ProductName = p.ProductName,
+                                 CategoryName=c.CategoryName,
+                                 ProductPhoto = p.ProductPhoto,
+
+                                 UnitsInStock=p.UnitsInStock,
+                                 VendorProductID=vp.VendorProductID,
+                                 ProductID=p.ProductID
+                             };
+                return result.ToList();
+            }
+        }
 
         public Product getAddandgetId(Product product)
         {

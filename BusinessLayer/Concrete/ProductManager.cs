@@ -42,7 +42,7 @@ namespace BusinessLayer.Concrete
         }
 
         //[SecuredOperation("product.add,admin")]  
-        [ValidationAspect(typeof(ProductValidator))]   //Add metodunu doğrula ProductValidatordaki kurallara göre 
+        //[ValidationAspect(typeof(ProductValidator))]   //Add metodunu doğrula ProductValidatordaki kurallara göre 
         public IResult Add(Product product)
         {
             IResult result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryID),
@@ -216,6 +216,34 @@ namespace BusinessLayer.Concrete
         {
            
             return _productDal.getAddandgetId(product);
+        }
+
+        public IDataResult<List<VendorProductDetailDtoWithId>> GetVendorProductDetailsByVendorId(int vendorId)
+        {
+
+            return new SuccessDataResult<List<VendorProductDetailDtoWithId>>(_productDal.GetVendorProductDetailsByVendorId(vendorId));
+        }
+
+        public IDataResult<Product> Update(int id,int stock)
+        {
+           //var vendorProduct = _vendorProductDal.Get((product) => product.VendorProductID == id);
+
+            var product = _productDal.Get((product) => product.ProductID == id);
+
+            product.UnitsInStock= stock; 
+            _productDal.Update(product);
+           
+            return new SuccessDataResult<Product>(product);
+        }
+
+        public IDataResult<Product> Deleete(int id,int productId)
+        {
+            var vendorproduct=_vendorProductDal.Get((vendorproduct) => vendorproduct.VendorProductID== id);
+            _vendorProductDal.Delete(vendorproduct);
+            var product = _productDal.Get((product)=>product.ProductID==productId);
+            _productDal.Delete(product);
+        
+            return new SuccessDataResult<Product>(product);
         }
     }
 }

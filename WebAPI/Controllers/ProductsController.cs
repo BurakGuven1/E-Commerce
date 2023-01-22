@@ -69,7 +69,29 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("updateVenProduct/{id}/{stock}")]
+        public IActionResult Update(int id,int stock)
+        {
+            
+            var result =_productService.Update(id, stock);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
+        [HttpGet("deleteVenProduct/{id}/{productId}")]
+        public IActionResult Delete(int id,int productId)
+        {
+
+            var result = _productService.Deleete(id, productId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
     }
 }

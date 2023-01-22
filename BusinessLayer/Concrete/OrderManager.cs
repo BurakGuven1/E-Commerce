@@ -22,6 +22,7 @@ namespace BusinessLayer.Concrete
 
         public IResult Add(Orders orders)
         {
+            orders.OrderDate = DateTime.Now;
             //iş kodları buraya... eğer ürün öyleyse böyleyse kodları... her şey geçerliyse ekle geçersizse ekleme
             _orderDal.Add(orders);
 
@@ -38,9 +39,9 @@ namespace BusinessLayer.Concrete
 
         }
 
-        public IDataResult<List<Orders>> GetAllByCustomerId(int id)
+        public IDataResult<Orders> GetAllByCustomerId(int id)
         {
-            return new SuccessDataResult<List<Orders>>(_orderDal.GetAll(o => o.CustomerID == id)); // SuccessDataResult içinde List of Product var ona parantez içini gönderiyosun.
+            return new SuccessDataResult<Orders>(_orderDal.Get((order)=>order.CustomerID==id)); // SuccessDataResult içinde List of Product var ona parantez içini gönderiyosun.
         }
 
         public IDataResult<List<Orders>> GetAllOrderDate(DateTime orderDate)

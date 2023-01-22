@@ -52,5 +52,15 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getallbyvendorid/{id}")]
+        public IActionResult GetAllByVendorId(int id)
+        {
+            var result = _productService.GetVendorProductDetailsByVendorId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

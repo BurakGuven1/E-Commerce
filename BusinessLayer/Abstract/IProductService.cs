@@ -18,11 +18,12 @@ namespace BusinessLayer.Abstract
         IDataResult<List<OrderBoxDetailDto>> GetOrderBoxDetails(int id);
         IDataResult<Product> GetById(int productId);
         IDataResult<List<VendorProductDetailDto>> GetVendorProductDetailsByCategoryId(int categoryId);
-
+        IDataResult<List<VendorProductDetailDtoWithId>> GetVendorProductDetailsByVendorId(int vendorId);
         IResult Add(Product product);
         IResult Update(Product product);
         IDataResult<Product> DtoAdd(VendorProductDetailDto model);
-
+        IDataResult<Product> Update(int id,int stock);
+        IDataResult<Product> Deleete(int id,int productId);
         Product getAddedId(Product product);
 
     }

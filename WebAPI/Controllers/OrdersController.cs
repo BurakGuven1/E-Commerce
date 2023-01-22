@@ -41,9 +41,19 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-     
+        [HttpGet("getbycustomerId/{customerId}")]
+        public IActionResult GetBycustomerId(int customerId)
+        {
+            var result = _orderService.GetAllByCustomerId(customerId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
-        [HttpPost("add")]
+
+        [HttpPost("addorder")]
         public IActionResult Add(Orders orders)
         {
             var result = _orderService.Add(orders);

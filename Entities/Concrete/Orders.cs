@@ -12,8 +12,7 @@ namespace Entities.Concrete
         public int OrderID { get; set; }
         public int CustomerID { get; set; }
         public DateTime OrderDate { get; set; }
-        public int AddressID { get; set; }
-        public int VendorCourierID { get; set; }
-        public string TrackingID { get; set; }
+
+        public int State { get; set; }
     }
 }

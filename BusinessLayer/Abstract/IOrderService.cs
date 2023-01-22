@@ -12,7 +12,7 @@ namespace BusinessLayer.Abstract
     public interface IOrderService
     {
         IDataResult<List<Orders>> GetAll();
-        IDataResult<List<Orders>> GetAllByCustomerId(int id);
+        IDataResult<Orders> GetAllByCustomerId(int id);
         IDataResult<List<Orders>> GetAllOrderDate(DateTime orderDate);
 
         //IDataResult<List<ProductDetailDto>> GetProductDetails();
