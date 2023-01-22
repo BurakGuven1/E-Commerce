@@ -27,6 +27,8 @@ namespace DataAccess.Concrete.EntityFramework
             modelBuilder.Entity<Orders>().HasKey(o => o.OrderID);
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Vendor>().HasKey(o => o.VendorID);
+           
+         
         }
 
         public DbSet<Product> Product { get; set; }

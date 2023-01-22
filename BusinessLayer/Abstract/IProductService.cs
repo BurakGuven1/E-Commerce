@@ -21,7 +21,7 @@ namespace BusinessLayer.Abstract
 
         IResult Add(Product product);
         IResult Update(Product product);
-        IResult DtoAdd(VendorProductDetailDto model);
+        IDataResult<Product> DtoAdd(VendorProductDetailDto model);
 
         Product getAddedId(Product product);
 

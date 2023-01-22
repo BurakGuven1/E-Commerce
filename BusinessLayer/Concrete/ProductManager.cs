@@ -104,15 +104,12 @@ namespace BusinessLayer.Concrete
             return new SuccessDataResult<List<VendorProductDetailDto>>(_productDal.GetVendorProductDetailsByCategoryId(categoryId));
         }
 
-        [ValidationAspect(typeof(ProductValidator))]
+        
         public IResult Update(Product product)
         {
-            var result = _productDal.GetAll(p => p.CategoryID == product.CategoryID).Count;
-            if (result >= 21)
-            {
-                return new ErrorResult(Messages.ProductCountOfCategoryError);
-            }
-            throw new NotImplementedException();
+             _productDal.Update(product);
+
+            return new SuccessDataResult<Product>();
         }
 
         private IResult CheckIfProductCountOfCategoryCorrect(int CategoryID)
@@ -146,11 +143,9 @@ namespace BusinessLayer.Concrete
             return new SuccessResult();
         }
 
-        public IResult DtoAdd(VendorProductDetailDto model)
+        public IDataResult<Product>  DtoAdd(VendorProductDetailDto model)
         {
-            SuccessResult result = new SuccessResult();
-            result.Success = false;
-            result.Message = "Bilinmeyen bir hata oluştu.";
+          
 
 
             var product = _productDal.getAddandgetId(new Product
@@ -165,9 +160,9 @@ namespace BusinessLayer.Concrete
 
            
 
-            var vendorProduct = _vendorService.Add(new VendorProduct
+             _vendorProductDal.Add(new VendorProduct
             {
-                CategoryID = model.CategoryID,
+                
                 Description = model.Description,
                 Price = model.Price,
                 ProductID = product.ProductID,
@@ -214,7 +209,7 @@ namespace BusinessLayer.Concrete
             }
             */
 
-            return result;
+            return new SuccessDataResult<Product>(product);
         }
 
         public Product getAddedId(Product product)

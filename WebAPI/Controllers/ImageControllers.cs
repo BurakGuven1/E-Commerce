@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
 
         [HttpPost("add")]
         public IActionResult add([FromForm] IFormFile image, [FromForm] Product product)
-        {
+         {
 
             var result = _imageService.add(image, product);
             if (result == null)
