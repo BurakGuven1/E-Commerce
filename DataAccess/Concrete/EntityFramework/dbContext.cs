@@ -28,7 +28,8 @@ namespace DataAccess.Concrete.EntityFramework
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Vendor>().HasKey(o => o.VendorID);
            
-         
+
+
         }
 
         public DbSet<Product> Product { get; set; }
@@ -37,6 +38,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Cart> Cart { get; set; }
         public DbSet<Vendor> Vendor { get; set; }
+        public DbSet<OrderedProduct> OrderedProduct { get; set; }
         public DbSet<VendorProduct> VendorProduct { get; set; }
         public DbSet<CartProduct> CartProduct { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }

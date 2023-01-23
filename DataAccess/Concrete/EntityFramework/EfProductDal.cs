@@ -91,7 +91,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  Description=vp.Description,
                                  ProductName=p.ProductName,
                                  CategoryID=p.CategoryID,
-                                 ProductPhoto=p.ProductPhoto
+                                 ProductPhoto=p.ProductPhoto,
+                                 VendorProductID=vp.VendorProductID
                              };
                 return result.ToList();
             }

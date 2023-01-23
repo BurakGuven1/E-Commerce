@@ -19,7 +19,7 @@ namespace Entities.DTOs
         public int UnitsInStock { get; set; }
         public int VendorID{ get; set; }
 
-       //public int VendorProductID { get; set; }
+       public int VendorProductID { get; set; }
        // public int ProductID { get; set; }
 
     }

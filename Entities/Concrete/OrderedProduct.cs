@@ -13,6 +13,7 @@ namespace Entities.Concrete
         public int VendorProductID { get; set; }
         public int OrderID { get; set; }
         public int Quantity { get; set; }
+        public int State { get; set; }
 
     }
 }

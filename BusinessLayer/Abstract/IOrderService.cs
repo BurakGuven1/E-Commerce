@@ -17,6 +17,6 @@ namespace BusinessLayer.Abstract
 
         //IDataResult<List<ProductDetailDto>> GetProductDetails();
         IDataResult<Orders> GetById(int OrderID);
-        IResult Add(Orders order);
+        IDataResult<Orders> Add(Orders order);
     }
 }

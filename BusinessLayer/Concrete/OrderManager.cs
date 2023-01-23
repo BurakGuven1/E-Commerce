@@ -20,13 +20,13 @@ namespace BusinessLayer.Concrete
 
         }
 
-        public IResult Add(Orders orders)
+        public IDataResult<Orders> Add(Orders orders)
         {
             orders.OrderDate = DateTime.Now;
             //iş kodları buraya... eğer ürün öyleyse böyleyse kodları... her şey geçerliyse ekle geçersizse ekleme
-            _orderDal.Add(orders);
+            var result=_orderDal.getAddandgetId(orders);
 
-            return new SuccessResult(Messages.ProductAdded);
+            return new SuccessDataResult<Orders>(result);
         }
         public IDataResult<List<Orders>> GetAll()
         {

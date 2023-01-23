@@ -13,6 +13,6 @@ namespace Entities.Concrete
         public int CustomerID { get; set; }
         public DateTime OrderDate { get; set; }
 
-        public int State { get; set; }
+        
     }
 }
